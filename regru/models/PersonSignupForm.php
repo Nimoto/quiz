@@ -18,7 +18,8 @@ class PersonSignupForm extends SignupForm
             [['ITN', 'type'], 'integer'],
             [['person_name'], 'string', 'max' => 100],
             [['email'], 'string', 'max' => 50],
-            ['password', 'string', 'min' => 6]
+            ['password', 'string', 'min' => 6],
+            ['ITN', 'string', 'max' => 12]
         ];
     }
 }
