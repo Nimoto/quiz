@@ -1,86 +1,27 @@
 <?php
 
-namespace app\controllers;
+namespace quiz\controllers;
 
-use Yii;
-use yii\filters\AccessControl;
-use yii\web\Controller;
-use app\models\SignupForm;
-use app\models\User;
+use quiz\core\Controller;
+use quiz\models\Quiz;
 
 class SiteController extends Controller
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['logout'],
-                'rules' => [
-                    [
-                        'actions' => ['logout'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ]
-        ];
+    public function index() {
+        $this->render('index.php');
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function actions()
-    {
-        return [
-            'error' => [
-                'class' => 'yii\web\ErrorAction',
-            ]
-        ];
-    }
-
-    /**
-     * @return string
-     */
-    public function actionIndex()
-    {
-        return $this->render('index');
-    }
-
-    /**
-     * Logout action.
-     *
-     * @return string
-     */
-    public function actionLogout()
-    {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
-    }
-
-
-    /**
-     * Signup action.
-     *
-     * @return string view
-     */
-    public function actionSignup()
-    {
-        $type = Yii::$app->request->get('type') ? Yii::$app->request->get('type') : User::PERSON_ACCOUNT;
-
-        $signupForm = (new SignupForm())->getForm($type);
-
-        if ($signupForm->load(Yii::$app->request->post()) && $user = $signupForm->signup()) {
-            Yii::$app->user->login($user, 3600 * 24 * 30);
-            return $this->goHome();
-        } else {
-            return $this->render('signup', [
-                'signupForm' => $signupForm,
-            ]);
-        }
+     * @var integer $userIQ
+     * @var integer $minDiff
+     * @var integer $maxDiff
+     * */
+    public function emulate() {
+        extract($_GET);
+        $quiz = new Quiz($userIQ, $minDiff, $maxDiff);
+        $quiz->emulate();
+        $this->render('result.php', [
+            'questions' => $quiz->getQuestions()
+        ]);
     }
 }
