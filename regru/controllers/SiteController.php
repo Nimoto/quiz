@@ -2,13 +2,11 @@
 
 namespace app\controllers;
 
-use app\models\CompanySignupForm;
-use app\models\PersonSignupForm;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
-use app\models\SignupForm;
-use app\models\User;
+use app\models\CompanySignupForm;
+use app\models\PersonSignupForm;
 
 class SiteController extends Controller
 {

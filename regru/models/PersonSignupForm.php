@@ -17,7 +17,8 @@ class PersonSignupForm extends SignupForm
             ['type', 'default', 'value' => User::PERSON_ACCOUNT],
             [['ITN', 'type'], 'integer'],
             [['person_name'], 'string', 'max' => 100],
-            [['email'], 'string', 'max' => 50]
+            [['email'], 'string', 'max' => 50],
+            ['password', 'string', 'min' => 6]
         ];
     }
 }

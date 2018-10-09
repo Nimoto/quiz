@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use app\models\User;
 use yii\base\Model;
 
 /**
@@ -32,29 +31,5 @@ class SignupForm extends Model
         }
 
         return false;
-    }
-
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    public function setType($type)
-    {
-        $this->type = $type;
-    }
-
-    public function getForm($type)
-    {
-        switch ($type) {
-            case User::COMPANY_ACCOUNT:
-                $form = new CompanySignupForm();
-                break;
-            default:
-                $form = new PersonSignupForm();
-                break;
-        }
-        $form->setType($type);
-        return $form;
     }
 }

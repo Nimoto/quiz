@@ -21,7 +21,8 @@ class CompanySignupForm extends SignupForm
             ['type', 'default', 'value' => User::COMPANY_ACCOUNT],
             [['ITN', 'type'], 'integer'],
             [['person_name', 'company_name'], 'string', 'max' => 100],
-            [['email'], 'string', 'max' => 50]
+            [['email'], 'string', 'max' => 50],
+            ['password', 'string', 'min' => 6]
         ];
     }
 }
