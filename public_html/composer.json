@@ -1,0 +1,19 @@
+{
+  "autoload": {
+    "classmap": [
+      "core/Application.php",
+      "core/Router.php",
+      "core/Controller.php",
+      "core/View.php",
+      "core/DataBaseConnection.php",
+      "core/Validator.php",
+      "core/Asset.php",
+      "controllers/SiteController.php",
+      "models/Question.php",
+      "models/Quiz.php",
+      "models/DataBaseQuiz.php",
+      "models/DataBaseQuestion.php",
+      "assets/AssetBundle.php"
+    ]
+  }
+}
